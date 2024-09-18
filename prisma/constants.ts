@@ -120,53 +120,10 @@ export const ingredients = [
 
 export const products = [
   {
-    name: 'Cheese 🌱👶',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D610D2925109AB2E1C92CC5383C.avif',
-    categoryId: 1
-  },
-  {
-    name: 'Pepperoni fresh',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D612FC7B7FCA5BE822752BEE1E5.avif',
-    categoryId: 1
-  },
-  {
-    name: 'Double Chick 👶',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D614CBE0530B7234B6D7A6E5F8E.avif',
-    categoryId: 1
-  },
-  {
-    name: 'Ham and cheese',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
-    categoryId: 1
-  },
-  {
-    name: 'Chorizo ​​fresh',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D61706D472F9A5D71EB94149304.avif',
-    categoryId: 1
-  },
-  {
-    name: 'Pizza Julien',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D6175C10773BFE36E56D48DF7E3.avif',
-    categoryId: 1
-  },
-  {
-    name: 'Meat pizza',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D6108E3A1C9952CD3A7F39A4D02.avif',
-    categoryId: 1
-  },
-  {
-    name: 'Burger pizza',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D61698827EE9B8DB6D0AEC53410.avif',
-    categoryId: 1
-  },
-
-
-  {
     name: 'Combo of Lady Bug and Super Cat',
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE796FF0059B799A17F57A9E64C725.avif',
     categoryId: 2
   },
-
   {
     name: 'Danwich Chorizo ​​BBQ',
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE796FF041FE1F94C903576DCFD01E.avif',
@@ -202,8 +159,6 @@ export const products = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EEF45EACC4D7EABC10E0A0E0C2C67A.avif',
     categoryId: 3
   },
-
-
   {
     name: 'Strawberry milkshake',
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE796FB231A5BF82B0A99A1B12339C.avif',
@@ -224,8 +179,6 @@ export const products = [
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE796FA1F50F8F8111A399E4C1A1E3.avif',
     categoryId: 4
   },
-
-  
   {
     name: 'Coffee Caramel Cappuccino',
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D61AED6B6D4BFDAD4E58D76CF56.avif',
@@ -250,49 +203,5 @@ export const products = [
     name: 'Latte',
     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D61B0C26A3F85D97A78FEEE00AD.avif',
     categoryId: 5
-  },
-
-
-  {
-    name: 'BonaAqua',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EEE20B3F64A6B8A0418FF967C69F72.avif',
-    categoryId: 6
-  },
-
-
-  {
-    name: 'Puff sticks with pineapples and lingonberries',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE796FFF9F5E6EB14E281FC5F491EC.avif',
-    categoryId: 7
-  },
-  {
-    name: 'Cheesecake New York',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EEE20B6B6EC471AB74AB8F8885775B.avif',
-    categoryId: 7
-  },
-  {
-    name: 'Banana cheesecake with chocolate cookies',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE797014D8F94683D580455892ABA1.avif',
-    categoryId: 7
-  },
-  {
-    name: 'Chocolate cookies',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7970210A7A54AFF74B239EA3D66F.avif',
-    categoryId: 7
-  },
-  {
-    name: 'Fondant',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D61B85ADB349AAD5044EC2803AE.avif',
-    categoryId: 7
-  },
-  {
-    name: 'Muffin Salted Caramel',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE79700C2EA0539D556CCF3DA1FEB7.avif',
-    categoryId: 7
-  },
-  {
-    name: 'Bracelets',
-    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF4D99F27073FDBAEBF88D28A43F8A.avif',
-    categoryId: 7
   },
 ]

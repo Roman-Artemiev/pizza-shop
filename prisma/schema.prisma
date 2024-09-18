@@ -30,29 +30,28 @@ model User {
 
 
 model Category {
-    id          Int  @id  @default(autoincrement())
+    id       Int       @id @default(autoincrement())
+    name     String    @unique
+    products Product[]
 
-    name        String  @unique
-    products    Product[]
-
-    createdAt   DateTime  @default(now())
-    updatedAt   DateTime  @updatedAt
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model Product {
-    id          Int  @id  @default(autoincrement())
+    id Int @id @default(autoincrement())
 
-    name        String
-    imageUrl    String
+    name     String
+    imageUrl String
 
     ingredients Ingredient[]
     items       ProductItem[]
 
-    category    Category  @relation(fields: [categoryId], references: [id])
-    categoryId  Int 
+    category   Category @relation(fields: [categoryId], references: [id])
+    categoryId Int
 
-    createdAt   DateTime  @default(now())
-    updatedAt   DateTime  @updatedAt
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 
@@ -70,16 +69,17 @@ model ProductItem {
 }
 
 model Ingredient {
-    id          Int  @id  @default(autoincrement())
+    id Int @id @default(autoincrement())
 
-    name        String
-    price       Int
-    imageUrl    String
-    products    Product[]
-    cartItems   CartItem[]
+    name     String
+    price    Int
+    imageUrl String
 
-    createdAt   DateTime  @default(now())
-    updatedAt   DateTime  @updatedAt
+    products  Product[]
+    cartItems CartItem[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 
