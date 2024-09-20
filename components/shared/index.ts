@@ -10,3 +10,4 @@ export { TopBar } from './top-bar';
 export { CheckboxFiltersGroup } from './checkbox-filters-group';
 export { ProductCard } from './product-card';
 export { ProductGroupList } from './products-group-list';
+export { SearchInput } from './search-input';
