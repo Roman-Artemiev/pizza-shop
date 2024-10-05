@@ -205,3 +205,7 @@ export const products = [
     categoryId: 5
   },
 ]
+
+export function getAll() {
+    throw new Error("Function not implemented.");
+}
