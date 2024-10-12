@@ -25,7 +25,7 @@ export const GroupVariants: React.FC<Props> = ({
   return (
     <div
       className={cn(
-        "flex justify-between bg-[#F3F3F7] rounded-3xl p-l select-none",
+        "flex justify-between bg-[#eeeef1] rounded-3xl p-l select-none",
         className
       )}>
       {items.map((item) => (
