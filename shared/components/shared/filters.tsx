@@ -4,7 +4,7 @@ import React from "react";
 import { Title } from "./title";
 import { Input } from "../ui";
 import { CheckboxFiltersGroup, RangeSlider } from ".";
-import { useFilters, useIngredients, useQueryFilters } from "@/hooks";
+import { useFilters, useIngredients, useQueryFilters } from "@/shared/hooks";
 
 interface Props {
   className?: string;
