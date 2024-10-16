@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Button,
@@ -10,6 +12,8 @@ import {
 } from "../ui";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { CartDrawerItem } from "./cart-drawer-item";
+import { getCartItemDetails } from "@/shared/lib";
 
 interface Props {
   className?: string;
@@ -29,6 +33,24 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
           </SheetTitle>
         </SheetHeader>
 
+        <div className="-mx-6 mt-5 overflow-auto flex-1">
+          <div className="mb-2">
+            <CartDrawerItem
+              id={0}
+              imageUrl={
+                "https://media.dodostatic.net/image/r:292x292/11EE7D610D2925109AB2E1C92CC5383C.avif"
+              }
+              details={getCartItemDetails(2, 30, [
+                { name: "Cheese" },
+                { name: "Tomato" },
+              ])}
+              name={"Сырная 🌱👶"}
+              price={550}
+              quantity={1}
+            />
+          </div>
+        </div>
+
         <SheetFooter className="-mx-6 bg-white p-8">
           <div className="w-full">
             <div className="flex mb-4">
@@ -41,8 +63,9 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
             </div>
 
             <Link href="/cart">
-              <Button type="submit" className="w-full h-12 text-base">Make an order
-                <ArrowRight className="w-5 ml-2"/>
+              <Button type="submit" className="w-full h-12 text-base">
+                Make an order
+                <ArrowRight className="w-5 ml-2" />
               </Button>
             </Link>
           </div>
