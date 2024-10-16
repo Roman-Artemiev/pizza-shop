@@ -25,7 +25,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   className,
 }) => {
-  const { totalAmount, fetchCartItems, items } = useCartStore((state) => [
+  const [totalAmount, fetchCartItems, items] = useCartStore((state) => [
     state.totalAmount,
     state.fetchCartItems,
     state.items,
