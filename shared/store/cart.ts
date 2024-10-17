@@ -49,7 +49,6 @@ export const useCartStore = create<CartState>((set, get) => ({
     }
   },
 
-  
   removeCartItem: async (id: number) => {},
   addCartItem: async (id: number) => {},
 }));
