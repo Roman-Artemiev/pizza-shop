@@ -28,7 +28,6 @@ interface ReturnProps extends Filters {
   setSelectedIngredients: (value: string) => void;
 }
 
-
 export const useFilters = (): ReturnProps => {
   const searchParams = useSearchParams() as unknown as Map<
     keyof QueryFilters,
@@ -55,20 +54,23 @@ export const useFilters = (): ReturnProps => {
   });
 
   const updatePrice = (name: keyof PriceProps, value: number) => {
-    setPrices(prev => ({
+    setPrices((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  return {
-    sizes,
-    pizzaTypes,
-    selectedIngredients,
-    prices,
-    setPrices: updatePrice,
-    setPizzaTypes: togglePizzaTypes,
-    setSizes: toggleSizes,
-    setSelectedIngredients: toggleIngredients,
-  }
+  return React.useMemo(
+    () => ({
+      sizes,
+      pizzaTypes,
+      selectedIngredients,
+      prices,
+      setPrices: updatePrice,
+      setPizzaTypes: togglePizzaTypes,
+      setSizes: toggleSizes,
+      setSelectedIngredients: toggleIngredients,
+    }),
+    [sizes, pizzaTypes, selectedIngredients, prices]
+  );
 };
