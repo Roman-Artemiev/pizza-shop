@@ -5,16 +5,11 @@ import React from "react";
 import { Title } from "./title";
 import { Button } from "../ui";
 import { GroupVariants } from "./group-variants";
-import {
-  mapPizzaType,
-  PizzaSize,
-  PizzaType,
-  pizzaTypes,
-} from "@/shared/constants/pizza";
+import { PizzaSize, PizzaType, pizzaTypes } from "@/shared/constants/pizza";
 import { PizzaImage } from "./product-image";
 import { Ingredient, ProductItem } from "@prisma/client";
 import { IngredientItem } from "./ingredient-item";
-import { calcTotalPizzaPrice, getPizzaDetails } from "@/shared/lib";
+import { getPizzaDetails } from "@/shared/lib";
 import { usePizzaOptions } from "@/shared/hooks";
 
 interface Props {
@@ -23,7 +18,7 @@ interface Props {
   ingredients: Ingredient[];
   items: ProductItem[];
   className?: string;
-  onClickAddCart?: VoidFunction;
+  onSubmit: (itemId: number, ingredient: number[]) => void;
 }
 
 export const ChoosePizzaForm: React.FC<Props> = ({
@@ -31,19 +26,31 @@ export const ChoosePizzaForm: React.FC<Props> = ({
   imageUrl,
   name,
   ingredients,
-  onClickAddCart,
+  onSubmit,
   items,
 }) => {
-  const { size, type, selectedIngredients, availableSizes, setSize, setType, addIngredient } = usePizzaOptions(items);
-  const { textDetails, totalPrice } = getPizzaDetails(type, size, items, ingredients, selectedIngredients);
+  const {
+    size,
+    type,
+    selectedIngredients,
+    availableSizes,
+    setSize,
+    setType,
+    currentItemId,
+    addIngredient,
+  } = usePizzaOptions(items);
+  const { textDetails, totalPrice } = getPizzaDetails(
+    type,
+    size,
+    items,
+    ingredients,
+    selectedIngredients
+  );
 
   const handleClickAdd = () => {
-    onClickAddCart?.();
-    console.log({
-      size,
-      type,
-      ingredients: selectedIngredients,
-    });
+    if (currentItemId) {
+      onSubmit(currentItemId, Array.from(selectedIngredients));
+    }
   };
 
   return (
@@ -87,7 +94,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
           onClick={handleClickAdd}
           className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10"
         >
-          Add to cart, {totalPrice}$
+          Add to cart for {totalPrice}$
         </Button>
       </div>
     </div>
