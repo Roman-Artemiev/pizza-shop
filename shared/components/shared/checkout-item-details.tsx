@@ -1,12 +1,9 @@
 import React from "react";
-import { WhiteBlock } from "./white-block";
-import { Button } from "../ui/button";
-import { ArrowRight } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 
 interface Props {
   title: React.ReactNode;
-  value: number;
+  value: string | number;
   className?: string;
 }
 
