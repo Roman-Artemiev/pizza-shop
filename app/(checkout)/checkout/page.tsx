@@ -23,8 +23,6 @@ export default function CheckoutPage() {
       firstName: "",
       lastName: "",
       phone: "",
-      address: "",
-      comment: "",
     },
   });
 
@@ -58,7 +56,7 @@ export default function CheckoutPage() {
 
               <CheckoutPersonalForm />
 
-              <CheckoutAddressForm />
+              {/* <CheckoutAddressForm /> */}
             </div>
 
             <div className="w-[450px]">
