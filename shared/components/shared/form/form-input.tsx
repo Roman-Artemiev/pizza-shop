@@ -1,6 +1,7 @@
 import React from "react";
 import { ClearButton, ErrorText, RequiredSymbol } from "..";
 import { Input } from "../../ui";
+import { useFormContext } from "react-hook-form";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -16,7 +17,17 @@ export const FormInput: React.FC<Props> = ({
   required,
   ...props
 }) => {
+  const {
+    register,
+    formState: { errors },
+    watch,
+    setValue,
+  } = useFormContext();
 
+  const value = watch(name);
+  const errorText = errors[name]?.message as string;
+
+  const onClickClear = () => setValue(name, "", { shouldValidate: true });
 
   return (
     <div className={className}>
@@ -26,14 +37,12 @@ export const FormInput: React.FC<Props> = ({
         </p>  
       )}
       <div className="relative">
-        <Input className="h-12 text-md" {...props} />
+        <Input className="h-12 text-md" {...register(name)} {...props} />
 
-        {/* {Boolean(text) && <ClearButton onClick={onClickClear} />} */}
-        <ClearButton />
+        {value && <ClearButton onClick={onClickClear} />}
       </div>
 
-      {/* {errotText && <ErrorText text={errotText} />} */}
-      <ErrorText text={'Enter'} className="mg-2" />
+      {errorText && <ErrorText text={errorText} />}
     </div>
   );
 };
