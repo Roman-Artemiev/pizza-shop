@@ -1,5 +1,5 @@
 import React from "react";
-import { CheckoutItem, WhiteBlock } from "..";
+import { CheckoutItem, CheckoutItemSkeleton, WhiteBlock } from "..";
 import { PizzaType, PizzaSize } from "@/shared/constants/pizza";
 import { getCartItemDetails } from "@/shared/lib";
 import { CartStateItem } from "@/shared/lib/get-cart-details";
@@ -8,14 +8,17 @@ interface Props {
   items: CartStateItem[];
   onClickCountButton: (id: number, quantity: number, type: 'plus' | 'minus') => void;
   removeCartItem: (id: number) => void;
+  loading?: boolean;
   className?: string;
 }
 
-export const CheckoutCart: React.FC<Props> = ({ className, items, onClickCountButton, removeCartItem }) => {
+export const CheckoutCart: React.FC<Props> = ({ className, items, onClickCountButton, removeCartItem, loading }) => {
   return (
     <WhiteBlock title="1. Cart" className={className}>
       <div className="flex flex-col gap-5">
-        {items.map((item) => (
+        {loading && [...Array(4)].map((_, index) => <CheckoutItemSkeleton key={index} />)}
+
+        {!loading && items.map((item) => (
           <CheckoutItem
             key={item.id}
             id={0}

@@ -2,11 +2,12 @@ import React from "react";
 import { CheckoutItemDetails } from "./checkout-item-details";
 import { cn } from "@/shared/lib/utils";
 import { Package, Percent, Truck, ArrowRight } from "lucide-react";
-import { Button } from "../ui";
+import { Button, Skeleton } from "../ui";
 import { WhiteBlock } from "./white-block";
 
 interface Props {
   totalAmount: number;
+  loading?: boolean;
   className?: string;
 }
 
@@ -15,6 +16,7 @@ const DELIVERY_PRICE = 25;
 
 export const CheckoutSidebar: React.FC<Props> = ({
   className,
+  loading,
   totalAmount,
 }) => {
   const vatPrice = ((totalAmount / 100) * VAT).toFixed(1);
@@ -24,7 +26,7 @@ export const CheckoutSidebar: React.FC<Props> = ({
     <WhiteBlock className={cn("p-6 sticky top-4", className)}>
       <div className="flex flex-col gap-1">
         <span className="text-xl">Total:</span>
-        <span className="text-[34px] font-extrabold">{totalPrice} $</span>
+        {loading ? <Skeleton className="w-[80%] h-11" /> : <span className="h-11 text-[34px] font-extrabold">{totalPrice} $</span>}
       </div>
 
       <CheckoutItemDetails
@@ -34,7 +36,7 @@ export const CheckoutSidebar: React.FC<Props> = ({
             Cost of products:
           </div>
         }
-        value={300}
+        value={loading ? <Skeleton className="h-6 w-14" /> : `${totalAmount} $` }
       />
       <CheckoutItemDetails
         title={
@@ -43,7 +45,7 @@ export const CheckoutSidebar: React.FC<Props> = ({
             Taxes:
           </div>
         }
-        value={vatPrice}
+        value={loading ? <Skeleton className="h-6 w-14" /> : `${vatPrice} $`}
       />
       <CheckoutItemDetails
         title={
@@ -52,7 +54,7 @@ export const CheckoutSidebar: React.FC<Props> = ({
             Delivery:
           </div>
         }
-        value={DELIVERY_PRICE}
+        value={loading ? <Skeleton className="h-6 w-14" /> : `${DELIVERY_PRICE} $`}
       />
 
       <Button
