@@ -124,7 +124,7 @@ model Order {
 
     token           String
     totalAmount     Int
-    status          OrderStatus
+    status          OrderStatus @default(PENDING)
     paymentId       String?
 
     items           Json
@@ -132,8 +132,6 @@ model Order {
     fullName        String
     email           String
     phone           String
-    address         String
-    comment         String?
 
     createdAt       DateTime  @default(now())
     updatedAt       DateTime  @updatedAt
