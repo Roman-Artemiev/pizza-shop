@@ -79,11 +79,10 @@ export async function createOrder(data: CheckoutFormValues) {
       PayOrderTemplate({
         orderId: order.id,
         totalAmount: order.totalAmount,
-        paymentUrl: "buymeacoffee.com/romanartemiev",
+        paymentUrl: "https://buymeacoffee.com/romanartemiev",
       })
     );
-
-    return "buymeacoffee.com/romanartemiev";
+    return "https://buymeacoffee.com/romanartemiev";
   } catch (error) {
     console.log("[CreateOrder] Server error", error);
   }
