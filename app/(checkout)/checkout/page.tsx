@@ -14,8 +14,11 @@ import { checkoutFormSchema, CheckoutFormValues } from "@/shared/constants";
 import { createOrder } from "@/app/actions";
 import toast from "react-hot-toast";
 import React from "react";
+import { useSession } from "next-auth/react";
+import { Api } from "@/shared/services/api-client";
 
 export default function CheckoutPage() {
+  const { data: session } = useSession();
   const [submitting, setSubmitting] = React.useState(false);
   const { totalAmount, updateItemQuantity, items, removeCartItem, loading } =
     useCart();
@@ -24,11 +27,26 @@ export default function CheckoutPage() {
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
       email: "",
-      firstName: "",
+      firstName: session?.user?.name || "",
       lastName: "",
       phone: "",
     },
   });
+
+  React.useEffect(() => {
+    async function fetchuUserInfo() {
+      const data = await Api.auth.getMe();
+      const [firstName, lastName] = data.fullName.split(" ");
+
+      form.setValue("firstName", firstName);
+      form.setValue("lastName", lastName);
+      form.setValue("email", data.email);
+    }
+
+    if (session) {
+      fetchuUserInfo();
+    }
+  }, [session]);
 
   const onSubmit = async (data: CheckoutFormValues) => {
     try {
@@ -37,7 +55,7 @@ export default function CheckoutPage() {
 
       toast.success("Order created successfully! Redirecting to payment...");
 
-      if(url) {
+      if (url) {
         location.href = url;
       }
     } catch (error) {
@@ -82,7 +100,10 @@ export default function CheckoutPage() {
             </div>
 
             <div className="w-[450px]">
-              <CheckoutSidebar totalAmount={totalAmount} loading={loading || submitting} />
+              <CheckoutSidebar
+                totalAmount={totalAmount}
+                loading={loading || submitting}
+              />
             </div>
           </div>
         </form>
