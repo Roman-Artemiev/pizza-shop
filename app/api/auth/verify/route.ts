@@ -1,10 +1,11 @@
 import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
   try {
-    const url = new URL(req.url);
-    const code = url.searchParams.get("code");
+    const code = req.nextUrl.searchParams.get("code");
 
     if (!code) {
       return NextResponse.json({ error: "Code is missing" }, { status: 404 });
@@ -35,7 +36,7 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    return NextResponse.redirect(new URL("/?verified", req.url));
+     return NextResponse.redirect(new URL("/?verified", req.nextUrl.origin));
   } catch (error) {
     console.log("[VerifyEmail] Server error", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
