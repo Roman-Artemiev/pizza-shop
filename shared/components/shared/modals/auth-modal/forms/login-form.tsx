@@ -56,7 +56,7 @@ export const LoginForm: React.FC<Props> = ({ className, onClose }) => {
             </p>
           </div>
           <img
-            src="/assets/images/phone-icon.svg"
+            src="/assets/images/phone-icon.png"
             alt="Phone Icon"
             width={60}
             height={60}
