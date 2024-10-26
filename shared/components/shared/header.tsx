@@ -9,6 +9,8 @@ import { SearchInput } from "./search-input";
 import { CartButton } from "./cart-button";
 import { ProfileButton } from "./profile-button";
 import { AuthModal } from "./modals";
+import { useRouter, useSearchParams } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface Props {
   hasSearch?: boolean;
@@ -22,6 +24,25 @@ export const Header: React.FC<Props> = ({
   hasCart = true,
 }) => {
   const [openAuthModal, setOpenAuthModal] = React.useState(false);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  React.useEffect(() => {
+    let toastMessage = '';
+
+    if (searchParams.has('verified')) {
+      toastMessage = 'Email verified successfully';
+    }
+
+    if (toastMessage) {
+      setTimeout(() => {
+        router.replace('/');
+        toast.success(toastMessage, {
+          duration: 3000,
+        });
+      }, 1000);
+    }
+  }, []);
 
   return (
     <div className={cn("border border-b ", className)}>

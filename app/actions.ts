@@ -2,6 +2,7 @@
 
 import { prisma } from "@/prisma/prisma-client";
 import { PayOrderTemplate } from "@/shared/components";
+import { VerificationUserTemplate } from "@/shared/components/shared/email-templates/verification-user";
 import { CheckoutFormValues } from "@/shared/constants";
 import { sendEmail } from "@/shared/lib";
 import { getUserSession } from "@/shared/lib/get-user-session";
@@ -109,11 +110,59 @@ export async function updateUserInfo(body: Prisma.UserUpdateInput) {
       data: {
         fullName: body.fullName,
         email: body.email,
-        password: body.password ? hashSync(body.password as string, 10) : findUser?.password,
+        password: body.password
+          ? hashSync(body.password as string, 10)
+          : findUser?.password,
       },
     });
   } catch (error) {
     console.log("[UpdateUserInfo] Server error", error);
+    throw error;
+  }
+}
+
+export async function registerUser(body: Prisma.UserCreateInput) {
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        email: body.email,
+      },
+    });
+
+    if (user) {
+      if (!user.verified) {
+        throw new Error("E-mail is not verified");
+      }
+
+      throw new Error("User already exists");
+    }
+
+    const createdUser = await prisma.user.create({
+      data: {
+        fullName: body.fullName,
+        email: body.email,
+        password: hashSync(body.password, 10),
+      },
+    });
+
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+
+    await prisma.verificationCode.create({
+      data: {
+        code,
+        userId: createdUser.id,
+      },
+    });
+
+    await sendEmail(
+      createdUser.email,
+      "Pizza / Verify account",
+      VerificationUserTemplate({
+        code,
+      })
+    );
+  } catch (error) {
+    console.log("Error [CREATE_USER]", error);
     throw error;
   }
 }

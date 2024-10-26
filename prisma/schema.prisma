@@ -15,7 +15,7 @@ model User {
     email       String  @unique
     password    String  @unique
     role        UserRole  @default(USER)
-    verified    DateTime
+    verified    DateTime?
 
     provider    String?
     providerId  String?
@@ -143,7 +143,7 @@ model VerificationCode {
     user            User  @relation(fields: [userId], references: [id])
     userId          Int  @unique
     
-    code            String  @unique
+    code            String
 
     createdAt       DateTime  @default(now())
     @@unique([userId, code])
