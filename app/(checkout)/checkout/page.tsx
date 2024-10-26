@@ -56,7 +56,8 @@ export default function CheckoutPage() {
       toast.success("Order created successfully! Redirecting to payment...");
 
       if (url) {
-        location.href = url;
+        location.href = '/';
+        window.open(url, '_blank');
       }
     } catch (error) {
       console.log(error);
