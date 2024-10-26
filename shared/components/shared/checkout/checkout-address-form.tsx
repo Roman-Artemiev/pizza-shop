@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import { Input } from "../../ui";
 import { AdressInput, FormTextarea, WhiteBlock } from "..";
