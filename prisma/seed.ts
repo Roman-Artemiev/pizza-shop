@@ -60,7 +60,7 @@ async function up() {
     data: {
       name: "Cheese 🌱👶",
       imageUrl:
-        "https://media.dodostatic.net/image/r:292x292/11EE7D610D2925109AB2E1C92CC5383C.avif",
+        "/assets/images/pizzas/cheese.png",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(0, 5),
@@ -72,7 +72,7 @@ async function up() {
     data: {
       name: "Pepperoni fresh",
       imageUrl:
-        "https://media.dodostatic.net/image/r:292x292/11EE7D612FC7B7FCA5BE822752BEE1E5.avif",
+        "/assets/images/pizzas/pepperoni-fresh.png",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(5, 10),
@@ -84,7 +84,7 @@ async function up() {
     data: {
       name: "Double Chick 👶",
       imageUrl:
-        "https://media.dodostatic.net/image/r:292x292/11EE7D614CBE0530B7234B6D7A6E5F8E.avif",
+        "/assets/images/pizzas/double-chick.png",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(10, 40),
