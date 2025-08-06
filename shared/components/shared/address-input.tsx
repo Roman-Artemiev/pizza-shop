@@ -7,11 +7,11 @@ import "react-dadata/dist/react-dadata.css";
 interface Props {
   onChange?: (value?: string) => void;
 }
-
+const token = process.env.NEXT_PUBLIC_DADATA_TOKEN || '';
 export const AdressInput: React.FC<Props> = ({ onChange }) => {
   return (
     <AddressSuggestions
-      token="c61cb525911621e89cdcba38552a9962074ac520"
+      token={token}
       onChange={(data) => onChange?.(data?.value)}
     />
   );
